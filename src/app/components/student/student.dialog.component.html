@@ -1,0 +1,65 @@
+<h1 mat-dialog-title>{{ data.id ? 'Sửa' : 'Thêm' }} sinh viên</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="dialog-form-container">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Họ và tên</mat-label>
+        <input matInput formControlName="studentName">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ngày sinh</mat-label>
+        <input matInput [matDatepicker]="dayOfBirthpicker" formControlName="dayOfBirth">
+        <mat-datepicker-toggle matSuffix [for]="dayOfBirthpicker"></mat-datepicker-toggle>
+        <mat-datepicker #dayOfBirthpicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Giới tính</mat-label>
+        <textarea matInput formControlName="studentGender"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Địa chỉ</mat-label>
+        <textarea matInput formControlName="studentAddress"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <textarea matInput formControlName="studentEmail"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Số điện thoại</mat-label>
+        <textarea matInput formControlName="studentPhone"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Chuyên ngành</mat-label>
+        <textarea matInput formControlName="studentMajor"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Khóa học</mat-label>
+        <textarea matInput formControlName="studentCourse"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Lớp</mat-label>
+        <textarea matInput formControlName="class"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>GPA</mat-label>
+        <textarea matInput formControlName="gpa"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Giảng viên chủ nhiệm</mat-label>
+        <mat-select formControlName="lecturerId">
+          <mat-option *ngFor="let lecture of data.lectures" [value]="lecture.id">
+            {{ lecture.lecturerName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <!-- <button mat-button mat-dialog-close (click)="close()">Hủy</button> -->
+  <button mat-raised-button color="primary" (click)="save()">Save</button>
+</div>

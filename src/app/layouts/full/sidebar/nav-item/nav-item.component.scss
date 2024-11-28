@@ -1,0 +1,59 @@
+/* Main menu item styling */
+.menu-list-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    position: relative; /* For positioning dropdown */
+  }
+  
+  .menu-list-item .routeIcon {
+    margin-right: 10px;  /* Spacing between icon and text */
+  }
+  
+  .hide-menu {
+    flex-grow: 1;  /* Ensures the text takes up remaining space */
+  }
+  
+  /* Submenu */
+  .submenu {
+    padding-left: 20px; /* Indentation for child items */
+  }
+  
+  .submenu-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    cursor: pointer;
+  }
+  
+  .submenu-item .routeIcon {
+    margin-right: 10px;
+  }
+  
+  /* Styling for the arrow */
+  .arrow-icon {
+    margin-left: auto;  /* Align the arrow to the right */
+  }
+  
+  .mat-icon {
+    transition: transform 0.3s ease;
+  }
+  
+  /* Rotate the arrow when submenu is open */
+  .rotate-arrow {
+    transform: rotate(180deg); /* Rotate arrow when submenu is open */
+  }
+  
+  /* Optional: Active state for selected items */
+  .mat-toolbar.mat-primary.activeMenu {
+    background-color: #1976d2;
+    color: white;
+  }
+
+  .disabled-menu {
+    pointer-events: none; /* Vô hiệu hóa sự kiện click */
+    opacity: 0.5;         /* Làm mờ menu */
+    cursor: not-allowed;  /* Thay đổi con trỏ chuột */
+  }
+  

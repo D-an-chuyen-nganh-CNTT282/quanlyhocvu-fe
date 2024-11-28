@@ -1,0 +1,66 @@
+<h1 mat-dialog-title>{{ data.id ? 'Sửa' : 'Thêm' }} yêu cầu sinh viên</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="dialog-form-container">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Sinh viên</mat-label>
+            <mat-select formControlName="studentId">
+              <mat-option *ngFor="let student of data.students" [value]="student.id">
+                {{ student.studentName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Loại yêu cầu</mat-label>
+        <textarea matInput formControlName="requestCategory"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Tình trạng xử lý</mat-label>
+        <mat-select formControlName="processingStatus">
+          <mat-option value="Received">Đã nhận</mat-option>
+          <mat-option value="Pending">Đang chờ</mat-option>
+          <mat-option value="InProcess">Đang xử lý</mat-option>
+          <mat-option value="Processed">Đã xử lý</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ngày gửi</mat-label>
+        <input matInput [matDatepicker]="requestDatepicker" formControlName="requestDate">
+        <mat-datepicker-toggle matSuffix [for]="requestDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #requestDatepicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ngày hoàn thành</mat-label>
+        <input matInput [matDatepicker]="completionDatepicker" formControlName="completionDate">
+        <mat-datepicker-toggle matSuffix [for]="completionDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #completionDatepicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="file-upload-container">
+      <label for="fileInput">Choose file</label>
+      
+      <div *ngIf="data.fileScanUrl">
+        <a [href]="data.fileScanUrl" target="_blank" download>
+          Download existing file
+        </a>
+      </div>
+
+      <!-- File upload input -->
+      <div *ngIf="filePreviewUrl">
+        <img [src]="filePreviewUrl" alt="File preview" class="file-preview-img" />
+      </div>
+      <input type="file" id="fileInput" (change)="onFileSelected($event)">
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="save()">Lưu</button>
+</div>

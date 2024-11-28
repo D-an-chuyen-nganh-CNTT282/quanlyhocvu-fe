@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>{{ data.id ? 'Sửa' : 'Thêm' }} công ty</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="dialog-form-container">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Tên công ty</mat-label>
+        <input matInput formControlName="companyName">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Địa chỉ</mat-label>
+        <textarea matInput formControlName="companyAddress"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Số điện thoại</mat-label>
+        <textarea matInput formControlName="companyPhone"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <textarea matInput formControlName="companyEmail"></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <!-- <button mat-button mat-dialog-close (click)="close()">Hủy</button> -->
+  <button mat-raised-button color="primary" (click)="save()">Lưu</button>
+</div>

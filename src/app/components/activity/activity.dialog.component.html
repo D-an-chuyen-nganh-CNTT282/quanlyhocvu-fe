@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>{{ data.id ? 'Sửa' : 'Thêm' }} hoạt động</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="dialog-form-container">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Tên hoạt động</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Địa điểm tổ chức</mat-label>
+        <textarea matInput formControlName="location"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Loại hoạt động</mat-label>
+        <mat-select formControlName="eventTypes">
+          <mat-option value="Student">Sinh viên</mat-option>
+          <mat-option value="Lecturer">Giảng viên</mat-option>
+          <mat-option value="Business">Doanh nghiệp</mat-option>
+          <mat-option value="Alumni">Cựu sinh viên</mat-option>
+        </mat-select>
+        </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Mô tả</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ngày tổ chức</mat-label>
+        <input matInput [matDatepicker]="eventDatepicker" formControlName="eventDate">
+        <mat-datepicker-toggle matSuffix [for]="eventDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #eventDatepicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <!-- <button mat-button mat-dialog-close (click)="close()">Hủy</button> -->
+  <button mat-raised-button color="primary" (click)="save()">Lưu</button>
+</div>

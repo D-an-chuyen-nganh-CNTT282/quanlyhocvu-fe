@@ -1,0 +1,91 @@
+<mat-card class="cardWithShadow theme-card">
+    <mat-card-header>
+        <mat-card-title class="m-b-0">Danh sách cựu sinh viên</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+        <div class="toolbar">
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Tên</mat-label>
+                    <input matInput [(ngModel)]="filterAlumniName" />
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Ngành học</mat-label>
+                    <input matInput [(ngModel)]="filterAlumniMajor" />
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Khóa học</mat-label>
+                    <input matInput [(ngModel)]="filterAlumniCourse" />
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" (click)="applyFilter()">
+                    <mat-icon>search</mat-icon>Tìm kiếm
+                </button>
+                <button mat-raised-button color="primary" (click)="openDialog()"><mat-icon>add</mat-icon>Thêm</button>
+            </div>
+        </div>
+        <div class="table-container">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="alumniName">
+                    <th mat-header-cell *matHeaderCellDef> Tên </th>
+                    <td mat-cell *matCellDef="let element"> {{element.alumniName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="dayOfBirth">
+                    <th mat-header-cell *matHeaderCellDef> Ngày sinh </th>
+                    <td mat-cell *matCellDef="let element"> {{element.dayOfBirth | date: 'dd-MM-yyyy'}} </td>
+                </ng-container>
+                <ng-container matColumnDef="alumniGender">
+                    <th mat-header-cell *matHeaderCellDef> Giới tính </th>
+                    <td mat-cell *matCellDef="let element"> {{element.alumniGender}} </td>
+                </ng-container>
+                <ng-container matColumnDef="alumniAddress">
+                    <th mat-header-cell *matHeaderCellDef> Địa chỉ </th>
+                    <td mat-cell *matCellDef="let element"> {{element.alumniAddress}} </td>
+                </ng-container>
+                <ng-container matColumnDef="alumniEmail">
+                    <th mat-header-cell *matHeaderCellDef> Email </th>
+                    <td mat-cell *matCellDef="let element"> {{element.alumniEmail}} </td>
+                </ng-container>
+                <ng-container matColumnDef="alumniPhone">
+                    <th mat-header-cell *matHeaderCellDef> Số điện thoại </th>
+                    <td mat-cell *matCellDef="let element"> {{element.alumniPhone}} </td>
+                </ng-container>
+                <ng-container matColumnDef="alumniMajor">
+                    <th mat-header-cell *matHeaderCellDef> Ngành học </th>
+                    <td mat-cell *matCellDef="let element"> {{element.alumniMajor}} </td>
+                </ng-container>
+                <ng-container matColumnDef="alumniCourse">
+                    <th mat-header-cell *matHeaderCellDef> Khóa học </th>
+                    <td mat-cell *matCellDef="let element"> {{element.alumniCourse}} </td>
+                </ng-container>
+                <ng-container matColumnDef="previousClass">
+                    <th mat-header-cell *matHeaderCellDef> Lớp học trước đây </th>
+                    <td mat-cell *matCellDef="let element"> {{element.previousClass}} </td>
+                </ng-container>
+                <ng-container matColumnDef="graduationDay">
+                    <th mat-header-cell *matHeaderCellDef> Ngày tốt nghiệp </th>
+                    <td mat-cell *matCellDef="let element"> {{element.graduationDay | date: 'dd-MM-yyyy'}} </td>
+                </ng-container>
+                <ng-container matColumnDef="lecturerName">
+                    <th mat-header-cell *matHeaderCellDef> Giảng viên chủ nhiệm </th>
+                    <td mat-cell *matCellDef="let element"> {{element.lecturerName}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef> Hành động </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button color="primary" (click)="openDialog(element)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+    
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+        <mat-paginator [pageSize]="pageSize" [pageIndex]="pageIndex" [length]="totalItems"
+            (page)="onPageChange($event)">
+        </mat-paginator>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>{{ data.id ? 'Sửa' : 'Thêm' }} thực tập doanh nghiệp</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form">
+        <div class="dialog-form-container">
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Doanh nghiệp</mat-label>
+                <mat-select formControlName="businessId">
+                    <mat-option *ngFor="let b of data.business" [value]="b.id">
+                        {{ b.businessName }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Sinh viên</mat-label>
+                <mat-select formControlName="studentId">
+                    <mat-option *ngFor="let student of data.students" [value]="student.id">
+                        {{ student.studentName }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Ngày bắt đầu</mat-label>
+                <input matInput [matDatepicker]="startDatepicker" formControlName="startDate">
+                <mat-datepicker-toggle matSuffix [for]="startDatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #startDatepicker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Ngày kết thúc</mat-label>
+                <input matInput [matDatepicker]="endDatepicker" formControlName="endDate">
+                <mat-datepicker-toggle matSuffix [for]="endDatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #endDatepicker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Đánh giá</mat-label>
+                <input matInput formControlName="remark">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Điểm</mat-label>
+                <input matInput formControlName="rating">
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+
+<div mat-dialog-actions>
+    <!-- <button mat-button mat-dialog-close (click)="close()">Hủy</button> -->
+    <button mat-raised-button color="primary" (click)="save()">Lưu</button>
+</div>

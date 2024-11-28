@@ -1,0 +1,86 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <mat-card-title class="m-b-0">Công văn đến</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="b-t-1">
+    <div class="toolbar">
+      <div>
+        <!-- Title Filter -->
+        <mat-form-field appearance="outline">
+          <mat-label>Tiêu đề</mat-label>
+          <input matInput [(ngModel)]="filterTitle" />
+        </mat-form-field>
+    
+        <!-- Received Date Filter -->
+        <mat-form-field appearance="outline">
+          <mat-label>Ngày hết hạn</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="filterDueDate" />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <button *ngIf="filterDueDate" mat-icon-button matSuffix aria-label="Clear"
+            (click)="filterDueDate=null; $event.stopPropagation();">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+    
+        <button mat-raised-button color="primary" (click)="applyFilter()">
+          <mat-icon>search</mat-icon>Tìm kiếm
+        </button>
+        <button mat-raised-button color="primary" (click)="openDialog()"><mat-icon>add</mat-icon>Thêm</button>
+      </div>
+    
+    
+    </div>
+    <div class="table-container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container> -->
+    
+      <ng-container matColumnDef="incomingDocumentTitle">
+        <th mat-header-cell *matHeaderCellDef> Tiêu đề </th>
+        <td mat-cell *matCellDef="let element"> {{element.incomingDocumentTitle}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="incomingDocumentContent">
+        <th mat-header-cell *matHeaderCellDef> Nội dung </th>
+        <td mat-cell *matCellDef="let element"> {{element.incomingDocumentContent}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="receivedDate">
+        <th mat-header-cell *matHeaderCellDef> Ngày nhận </th>
+        <td mat-cell *matCellDef="let element"> {{element.receivedDate | date: 'dd-MM-yyyy'}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="dueDate">
+        <th mat-header-cell *matHeaderCellDef> Ngày hết hạn </th>
+        <td mat-cell *matCellDef="let element"> {{element.dueDate | date: 'dd-MM-yyyy'}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="incomingDocumentProcessingStatuss">
+        <th mat-header-cell *matHeaderCellDef> Tình trạng xử lý </th>
+        <td mat-cell *matCellDef="let element"> {{element.incomingDocumentProcessingStatuss}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Hành động </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" (click)="openDialog(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteDocument(element.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    </div>
+    <mat-paginator [pageSize]="pageSize" [pageIndex]="pageIndex" [length]="totalItems" (page)="onPageChange($event)">
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>
+

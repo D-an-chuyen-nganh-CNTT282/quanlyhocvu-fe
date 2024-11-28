@@ -1,0 +1,162 @@
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+
+    // Filter container styles
+    &>div {
+        display: flex;
+        gap: 16px;
+        // max-height: 32px;
+    }
+}
+
+/* Dialog container */
+.mat-dialog-container {
+    width: 100%;
+    max-width: 800px;
+    padding: 32px 48px;
+    /* Tăng padding ngang để tiêu đề không sát lề */
+    background-color: #f9f9f9;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Dialog title */
+.mat-dialog-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #3f51b5;
+    margin-bottom: 32px;
+    /* Tăng khoảng cách bên dưới tiêu đề */
+    text-align: center;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 16px;
+}
+
+/* Flex container for form fields */
+.dialog-form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Two-column layout */
+    gap: 24px;
+    /* Space between fields */
+}
+
+/* Single-column for smaller screens */
+@media (max-width: 600px) {
+    .dialog-form-container {
+        grid-template-columns: 1fr;
+        /* Switch to single-column layout */
+    }
+
+    mat-form-field {
+        width: 100%;
+    }
+}
+
+/* Input and textarea styling */
+input.mat-input-element,
+textarea.mat-input-element {
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 6px;
+    background-color: #f0f0f0;
+}
+
+textarea.mat-input-element {
+    resize: none;
+    /* Prevent resizing */
+}
+
+/* Select dropdown styling */
+mat-select {
+    font-size: 16px;
+    padding: 12px;
+}
+
+/* File upload container */
+.file-upload-container {
+    margin-top: 16px;
+    text-align: center;
+}
+
+.file-upload-container label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #3f51b5;
+    margin-bottom: 8px;
+    display: block;
+}
+
+input[type="file"] {
+    font-size: 14px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.file-upload-container a {
+    color: #3f51b5;
+    text-decoration: underline;
+    margin-top: 8px;
+    display: inline-block;
+}
+
+.file-preview-img {
+    max-width: 100%;
+    max-height: 150px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-top: 8px;
+}
+
+/* Buttons */
+.mat-button,
+.mat-raised-button {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.mat-raised-button.mat-primary {
+    background-color: #3f51b5;
+    color: white;
+}
+
+.mat-raised-button.mat-primary:hover {
+    background-color: #303f9f;
+    transform: translateY(-2px);
+}
+
+.mat-raised-button.mat-primary:active {
+    transform: translateY(0);
+}
+
+/* Dialog actions */
+.mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    /* Space between buttons */
+    margin-top: 32px;
+}
+
+.table-container {
+    overflow-x: auto; /* Kích hoạt thanh cuộn ngang */
+    display: block;   /* Đảm bảo nó là khối */
+    max-width: 100%;  /* Giới hạn chiều rộng tối đa */
+  }
+
+//   table {
+//     width: 100%; /* Bảng chiếm toàn bộ chiều rộng container */
+//     min-width: 800px; /* Đặt chiều rộng tối thiểu (nếu cần) */
+//   }
+
+  mat-card {
+    overflow: hidden; /* Ngăn nội dung tràn khỏi thẻ card */
+  }

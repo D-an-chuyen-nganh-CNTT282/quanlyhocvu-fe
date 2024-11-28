@@ -1,0 +1,90 @@
+<!-- @if(item.navCap) { @if(item.divider) {
+<span class="sidebar-divider"></span>
+}
+<div mat-subheader class="nav-caption">
+  {{ item.navCap }}
+</div>
+} @else {
+<a
+  mat-list-item
+  (click)="onItemSelected(item)"
+  [ngClass]="{
+      'mat-toolbar mat-primary activeMenu': item.route
+        ? router.isActive(item.route, true)
+        : false,
+    }"
+  class="menu-list-item"
+>
+  <span
+    class="iconify routeIcon"
+    matListItemIcon
+    [attr.data-icon]="item.iconName"
+  ></span>
+
+  <span class="hide-menu">{{ item.displayName }}</span>
+</a>
+} -->
+<div>
+  <ng-container *ngIf="item.navCap; else menuItem">
+    <div mat-subheader class="nav-caption">{{ item.navCap }}</div>
+    <span *ngIf="item.divider" class="sidebar-divider"></span>
+  </ng-container>
+
+  <ng-template #menuItem>
+    <!-- Main item with arrow -->
+    <a
+      mat-list-item
+      (click)="toggleSubMenu(item);onItemSelected(item)"
+      [ngClass]="{
+        'mat-toolbar mat-primary activeMenu': item.route
+          ? router.isActive(item.route, true)
+          : false
+      }"
+      *ngIf="hasAccess(item.roles)"
+      class="menu-list-item"
+    >
+      <span
+        class="iconify routeIcon"
+        matListItemIcon
+        [attr.data-icon]="item.iconName"
+        *ngIf="item.iconName"
+      ></span>
+      <span class="hide-menu">{{ item.displayName }}</span>
+      <span class="arrow-icon" *ngIf="item.children">
+        <!-- Use mat-icon for arrows -->
+        <mat-icon [ngClass]="{'rotate-arrow': item.isOpen}">expand_more</mat-icon>
+      </span>
+    </a>
+
+    <!-- Submenu (only visible if item.isOpen is true) -->
+    <div *ngIf="item.isOpen" class="submenu">
+      <ng-container *ngFor="let child of item.children">
+        <!-- <div
+          class="submenu-item"
+          (click)="onItemSelected(child)"
+        > -->
+        <a
+      mat-list-item
+      (click)="onItemSelected(child)"
+      [ngClass]="{
+        'mat-toolbar mat-primary activeMenu': child.route
+          ? router.isActive(child.route, true)
+          : false
+      }"
+      class="menu-list-item"
+      *ngIf="hasAccess(child.roles)"
+    >
+          <span
+            class="iconify routeIcon"
+            [attr.data-icon]="child.iconName"
+            *ngIf="child.iconName"
+          ></span>
+          <span class="hide-menu">{{ child.displayName }}</span>
+          </a>
+        <!-- </div> -->
+      </ng-container>
+    </div>
+  </ng-template>
+</div>
+
+

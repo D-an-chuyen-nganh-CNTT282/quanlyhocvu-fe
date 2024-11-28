@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>{{ data.id ? 'Sửa' : 'Thêm' }} kế hoạch cá nhân</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="dialog-form-container">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nội dung</mat-label>
+        <input matInput formControlName="planContent">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ghi chú</mat-label>
+        <input matInput formControlName="note">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ngày bắt đầu</mat-label>
+        <input matInput [matDatepicker]="startDatepicker" formControlName="startDate">
+        <mat-datepicker-toggle matSuffix [for]="startDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatepicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ngày kết thúc</mat-label>
+        <input matInput [matDatepicker]="endDatepicker" formControlName="endDate">
+        <mat-datepicker-toggle matSuffix [for]="endDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatepicker></mat-datepicker>
+      </mat-form-field>
+      <!-- <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Lecture</mat-label>
+        <mat-select formControlName="lecturerId">
+          <mat-option *ngFor="let lecture of data.lectures" [value]="lecture.id">
+            {{ lecture.lecturerName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field> -->
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <!-- <button mat-button mat-dialog-close (click)="close()">Hủy</button> -->
+  <button mat-raised-button color="primary" (click)="save()">Lưu</button>
+</div>

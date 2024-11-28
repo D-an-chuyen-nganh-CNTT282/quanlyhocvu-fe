@@ -1,0 +1,57 @@
+<mat-card class="cardWithShadow theme-card">
+    <mat-card-header>
+      <mat-card-title class="m-b-0">Thông tin doanh nghiệp</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+      <div class="toolbar">
+        <div>
+          <button mat-raised-button color="primary" (click)="openDialog()"><mat-icon>add</mat-icon>Thêm</button>
+        </div>
+  
+      </div>
+      <div class="table-container">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="lecturerName">
+            <th mat-header-cell *matHeaderCellDef> Giảng viên phụ trách</th>
+            <td mat-cell *matCellDef="let element"> {{element.lecturerName}} </td>
+          </ng-container>
+        <ng-container matColumnDef="businessName">
+          <th mat-header-cell *matHeaderCellDef> Tên doanh nghiệp</th>
+          <td mat-cell *matCellDef="let element"> {{element.businessName}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="businessAddress">
+          <th mat-header-cell *matHeaderCellDef> Địa chỉ </th>
+          <td mat-cell *matCellDef="let element"> {{element.businessAddress}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="businessPhone">
+          <th mat-header-cell *matHeaderCellDef> Số điện thoại </th>
+          <td mat-cell *matCellDef="let element"> {{element.businessPhone}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="businessEmail">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.businessEmail}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Hành động </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="openDialog(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="delete(element.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  </div>
+      <mat-paginator [pageSize]="pageSize" [pageIndex]="pageIndex" [length]="totalItems" (page)="onPageChange($event)">
+      </mat-paginator>
+    </mat-card-content>
+  </mat-card>

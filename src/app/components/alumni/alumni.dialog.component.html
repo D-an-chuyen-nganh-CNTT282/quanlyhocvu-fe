@@ -1,0 +1,64 @@
+<h1 mat-dialog-title>{{ data.id ? 'Sửa' : 'Thêm' }} cựu sinh viên</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="dialog-form-container">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Họ và tên</mat-label>
+        <input matInput formControlName="alumniName">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Giới tính</mat-label>
+        <textarea matInput formControlName="alumniGender"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Địa chỉ</mat-label>
+        <textarea matInput formControlName="alumniAddress"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <textarea matInput formControlName="alumniEmail"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Số điện thoại</mat-label>
+        <textarea matInput formControlName="alumniPhone"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ngành học</mat-label>
+        <textarea matInput formControlName="alumniMajor"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Khóa học</mat-label>
+        <textarea matInput formControlName="alumniCourse"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Lớp học trước đây</mat-label>
+        <textarea matInput formControlName="previousClass"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Giảng viên chủ nhiệm</mat-label>
+        <mat-select formControlName="lecturerId">
+          <mat-option *ngFor="let lecturer of data.lecturers" [value]="lecturer.id">
+            {{ lecturer.lecturerName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ngày sinh</mat-label>
+        <input matInput [matDatepicker]="dayOfBirthpicker" formControlName="dayOfBirth">
+        <mat-datepicker-toggle matSuffix [for]="dayOfBirthpicker"></mat-datepicker-toggle>
+        <mat-datepicker #dayOfBirthpicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ngày tốt nghiệp</mat-label>
+        <input matInput [matDatepicker]="graduationDaypicker" formControlName="graduationDay">
+        <mat-datepicker-toggle matSuffix [for]="graduationDaypicker"></mat-datepicker-toggle>
+        <mat-datepicker #graduationDaypicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <!-- <button mat-button mat-dialog-close (click)="close()">Hủy</button> -->
+  <button mat-raised-button color="primary" (click)="save()">Lưu</button>
+</div>

@@ -1,0 +1,47 @@
+<h1 mat-dialog-title>{{ data.id ? 'Sửa' : 'Thêm' }} lịch giảng dạy</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="dialog-form-container">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Môn học</mat-label>
+        <input matInput formControlName="subject">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Địa điểm</mat-label>
+        <input matInput formControlName="location">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ngày bắt đầu</mat-label>
+        <input matInput [matDatepicker]="startDatepicker" formControlName="startDate">
+        <mat-datepicker-toggle matSuffix [for]="startDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatepicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ngày kết thúc</mat-label>
+        <input matInput [matDatepicker]="endDatepicker" formControlName="endDate">
+        <mat-datepicker-toggle matSuffix [for]="endDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatepicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Tiết học</mat-label>
+        <textarea matInput formControlName="classPeriod"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Giảng viên</mat-label>
+        <mat-select formControlName="lecturerId">
+          <mat-option *ngFor="let lecture of data.lecturers" [value]="lecture.id">
+            {{ lecture.lecturerName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <!-- <button mat-button mat-dialog-close (click)="close()">Hủy</button> -->
+  <button mat-raised-button color="primary" (click)="save()">Lưu</button>
+</div>

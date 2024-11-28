@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>{{ data.id ? 'Sửa' : 'Thêm' }} sự kiện doanh nghiệp</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="dialog-form-container">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Doanh nghiệp</mat-label>
+        <mat-select formControlName="businessId">
+          <mat-option *ngFor="let b of data.business" [value]="b.id">
+            {{ b.businessName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Sự kiện</mat-label>
+        <mat-select formControlName="activitiesId">
+          <mat-option *ngFor="let activitie of data.activities" [value]="activitie.id">
+            {{ activitie.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <!-- <button mat-button mat-dialog-close (click)="close()">Hủy</button> -->
+  <button mat-raised-button color="primary" (click)="save()">Lưu</button>
+</div>

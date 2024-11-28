@@ -1,0 +1,36 @@
+html .topbar {
+  background-color: $toolbar;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  height: $header-height;
+  gap: 6px;
+}
+
+html .topbar .topbar-image {
+  height: 100%; /* Chiều cao ảnh bằng với topbar */
+  max-height: $header-height; /* Đảm bảo không vượt quá chiều cao của topbar */
+  object-fit: contain; /* Đảm bảo giữ tỉ lệ ảnh */
+  width: 100%;
+  background-color: white;
+}
+
+.topbar-dd {
+  min-width: 200px !important;
+}
+
+.object-cover {
+  object-fit: cover;
+}
+
+.profile-btn-dd {
+  padding: 0 10px !important;
+
+  &.mat-mdc-fab .mat-mdc-button-persistent-ripple::before {
+    display: none;
+  }
+
+  &.mat-mdc-fab {
+    background-color: transparent;
+  }
+}

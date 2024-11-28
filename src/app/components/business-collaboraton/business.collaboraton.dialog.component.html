@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>{{ data.id ? 'Sửa' : 'Thêm' }} hợp tác doanh nghiệp</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="dialog-form-container">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Dự án</mat-label>
+        <input matInput formControlName="projectName">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Tiến độ dự án</mat-label>
+        <mat-select formControlName="projectStatuss">
+          <mat-option value="UnderDiscussion">Đang thảo luận</mat-option>
+          <mat-option value="PendingApproval">Chờ phê duyệt</mat-option>
+          <mat-option value="Approved">Phê duyệt</mat-option>
+          <mat-option value="InProgress">Đang tiến hành</mat-option>
+          <mat-option value="OnHold">Tạm hoãn</mat-option>
+          <mat-option value="Completed">Hoàn thành</mat-option>
+          <mat-option value="Ended">Kết thúc</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Kết quả đạt được</mat-label>
+        <input matInput formControlName="result">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Doanh nghiệp</mat-label>
+        <mat-select formControlName="businessId">
+          <mat-option *ngFor="let b of data.business" [value]="b.id">
+            {{ b.businessName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <!-- <button mat-button mat-dialog-close (click)="close()">Hủy</button> -->
+  <button mat-raised-button color="primary" (click)="save()">Lưu</button>
+</div>

@@ -1,0 +1,154 @@
+<div class="row g-3"> <!-- Dùng g-3 để tạo khoảng cách giữa các cột -->
+    <div class="col-lg-3 col-md-6"> <!-- Chia mỗi phần tử thành 1 cột -->
+      <mat-card class="shadow-none bg-light-warning">
+        <mat-card-content>
+          <div class="d-flex justify-content-between align-items-center m-b-20 p-b-2">
+            <div class="d-flex align-items-center gap-12">
+              <mat-card-title class="m-b-0 f-s-16 f-w-500 text-muted">Cựu sinh viên</mat-card-title>
+            </div>
+          </div>
+          <div class="row align-items-end justify-content-between">
+            <div class="col-6">
+              <h2 class="mat-subtitle-1 f-s-30 lh-lg m-b-12">{{statisticCount.Alumni}}</h2>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  
+    <div class="col-lg-3 col-md-6">
+      <mat-card class="shadow-none bg-light-success">
+        <mat-card-content>
+          <div class="d-flex justify-content-between align-items-center m-b-20 p-b-2">
+            <div class="d-flex align-items-center gap-12">
+              <mat-card-title class="m-b-0 f-s-16 f-w-500 text-muted">Sinh viên</mat-card-title>
+            </div>
+          </div>
+          <div class="row align-items-end justify-content-between">
+            <div class="col-6">
+              <h2 class="mat-subtitle-1 f-s-30 lh-lg m-b-12">{{statisticCount.Students}}</h2>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  
+    <div class="col-lg-3 col-md-6">
+      <mat-card class="shadow-none bg-light-primary">
+        <mat-card-content>
+          <div class="d-flex justify-content-between align-items-center m-b-20 p-b-2">
+            <div class="d-flex align-items-center gap-12">
+              <mat-card-title class="m-b-0 f-s-16 f-w-500 text-muted">Doanh nghiệp</mat-card-title>
+            </div>
+          </div>
+          <div class="row align-items-end justify-content-between">
+            <div class="col-6">
+              <h2 class="mat-subtitle-1 f-s-30 lh-lg m-b-12">{{statisticCount.Businesses}}</h2>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  
+    <div class="col-lg-3 col-md-6">
+      <mat-card class="shadow-none bg-light-error">
+        <mat-card-content>
+          <div class="d-flex justify-content-between align-items-center m-b-20 p-b-2">
+            <div class="d-flex align-items-center gap-12">
+              <mat-card-title class="m-b-0 f-s-16 f-w-500 text-muted">Giảng viên</mat-card-title>
+            </div>
+          </div>
+          <div class="row align-items-end justify-content-between">
+            <div class="col-6">
+              <h2 class="mat-subtitle-1 f-s-30 lh-lg m-b-12">{{statisticCount.Lecturers}}</h2>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  
+
+  <mat-card class="cardWithShadow overflow-hidden">
+    <mat-card-content>
+        <mat-card-title class="m-b-4">Sự kiện sắp tới</mat-card-title>
+    </mat-card-content>
+    <div class="table-responsive">
+        <table mat-table [dataSource]="statisticUpcoming" class="w-100">
+            <!-- Profile Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef class="mat-subtitle-1 f-s-14">
+                    Tên sự kiện
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="d-flex align-items-center">
+                        <div class="m-l-16 product-title">
+                            <h6 class="mat-subtitle-1 text-truncate-2 f-s-14 lh-sm">
+                                {{ element.name }}
+                            </h6>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+    
+            <!-- Hour Rate Column -->
+            <ng-container matColumnDef="eventDate">
+                <th mat-header-cell *matHeaderCellDef class="mat-subtitle-1 f-s-14">
+                    Ngày tổ chức
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    <h6 class="mat-subtitle-1 f-s-16">{{ element.eventDate | date: 'dd-MM-yyyy' }}</h6>
+                </td>
+            </ng-container>
+    
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="location">
+                <th mat-header-cell *matHeaderCellDef class="mat-subtitle-1 f-s-14">
+                    Địa điểm tổ chức
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="d-flex align-items-center">
+                        <div class="m-l-16 product-title">
+                            <h6 class="mat-subtitle-1 text-truncate-2 f-s-14 lh-sm">
+                                {{ element.location }}
+                            </h6>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="eventTypes">
+                <th mat-header-cell *matHeaderCellDef class="mat-subtitle-1 f-s-14">
+                    Loại sự kiện
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="d-flex align-items-center">
+                        <div class="m-l-16 product-title">
+                            <h6 class="mat-subtitle-1 text-truncate-2 f-s-14 lh-sm">
+                                {{ element.eventTypes }}
+                            </h6>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef class="mat-subtitle-1 f-s-14">
+                    Mô tả
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="d-flex align-items-center">
+                        <div class="m-l-16 product-title">
+                            <h6 class="mat-subtitle-1 text-truncate-2 f-s-14 lh-sm">
+                                {{ element.description }}
+                            </h6>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <mat-paginator [pageSize]="pageSize" [pageIndex]="pageIndex" [length]="totalItems" (page)="onPageChange($event)">
+        </mat-paginator>
+    </div>
+    </mat-card>

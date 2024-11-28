@@ -1,0 +1,46 @@
+<h1 mat-dialog-title>{{ data.id ? 'Sửa' : 'Thêm' }} nơi làm việc của cựu sinh viên</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="dialog-form-container">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Công ty</mat-label>
+        <mat-select formControlName="companyId">
+          <mat-option *ngFor="let c of data.company" [value]="c.id">
+            {{ c.companyName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Cựu sinh viên</mat-label>
+        <mat-select formControlName="alumniId">
+          <mat-option *ngFor="let a of data.alumni" [value]="a.id">
+            {{ a.alumniName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ngày băt đầu</mat-label>
+        <input matInput [matDatepicker]="startDatepicker" formControlName="startDate">
+        <mat-datepicker-toggle matSuffix [for]="startDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatepicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ngày kết thúc</mat-label>
+        <input matInput [matDatepicker]="endDatepicker" formControlName="endDate">
+        <mat-datepicker-toggle matSuffix [for]="endDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatepicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Chức vụ</mat-label>
+        <textarea matInput formControlName="duty"></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <!-- <button mat-button mat-dialog-close (click)="close()">Hủy</button> -->
+  <button mat-raised-button color="primary" (click)="save()">Lưu</button>
+</div>

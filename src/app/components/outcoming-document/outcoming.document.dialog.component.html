@@ -1,0 +1,86 @@
+<h1 mat-dialog-title>{{ data.id ? 'Sửa' : 'Thêm' }} công văn đi</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="dialog-form-container">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Tiêu đề</mat-label>
+        <input matInput formControlName="outgoingDocumentTitle">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nội dung</mat-label>
+        <textarea matInput formControlName="outgoingDocumentContent"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Phòng ban</mat-label>
+        <mat-select formControlName="departmentId">
+          <mat-option *ngFor="let department of data.departments" [value]="department.id">
+            {{ department.departmentName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>User</mat-label>
+        <mat-select formControlName="userId">
+          <mat-option *ngFor="let user of data.users" [value]="user.id">
+            {{ user.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email người nhận</mat-label>
+        <input matInput formControlName="recipientEmail">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ngày gửi</mat-label>
+        <input matInput [matDatepicker]="sendDatepicker" formControlName="sendDate">
+        <mat-datepicker-toggle matSuffix [for]="sendDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #sendDatepicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ngày hết hạn</mat-label>
+        <input matInput [matDatepicker]="dueDatepicker" formControlName="dueDate">
+        <mat-datepicker-toggle matSuffix [for]="dueDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #dueDatepicker></mat-datepicker>
+      </mat-form-field>
+
+      <!-- Dropdown for IncomingDocumentProcessingStatuss -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Tình trạng xử lý</mat-label>
+        <mat-select formControlName="outgoingDocumentProcessingStatuss">
+          <mat-option value="PendingResponse">Đợi phản hồi</mat-option>
+          <mat-option value="Responded">Đã phản hồi</mat-option>
+          <mat-option value="Overdue">Quá hạn</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+    <div class="file-upload-container">
+      <label for="fileInput">Choose file</label>
+      
+      <!-- Display file download link if fileScanUrl is available -->
+      <div *ngIf="data.fileScanUrl">
+        <a [href]="data.fileScanUrl" target="_blank" download>
+          Download existing file
+        </a>
+      </div>
+
+      <!-- File upload input -->
+      <div *ngIf="filePreviewUrl">
+        <img [src]="filePreviewUrl" alt="File preview" class="file-preview-img" />
+      </div>
+      <input type="file" id="fileInput" (change)="onFileSelected($event)">
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <!-- <button mat-button mat-dialog-close (click)="close()">Hủy</button> -->
+  <button mat-raised-button color="primary" (click)="save()">Lưu</button>
+</div>
